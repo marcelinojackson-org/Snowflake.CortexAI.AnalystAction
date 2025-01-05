@@ -49,7 +49,7 @@ GitHub Action that sends natural-language questions to Snowflake Cortex Analyst 
         }
       ]
     include-sql: true
-    result-format: markdown
+    result-format: json
     temperature: 0.1
     max-output-tokens: 1024
   env:
@@ -59,6 +59,8 @@ GitHub Action that sends natural-language questions to Snowflake Cortex Analyst 
 - name: View response
   run: echo '${{ steps.analyst.outputs.result-json }}' | jq .
 ```
+
+Setting `include-sql: true` with `result-format: json` tells Cortex Analyst to return the generated statement (`response.sql`) **and** execute it, so `result-json` contains both the SQL text and the actual row set.
 
 ## Outputs
 
