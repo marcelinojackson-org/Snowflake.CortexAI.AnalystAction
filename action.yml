@@ -1,0 +1,39 @@
+name: "Snowflake.CortexAI.AnalystAction"
+description: "Execute a Cortex Analyst query against Snowflake semantic models"
+author: "Marcelino Jackson"
+branding:
+  icon: "message-square"
+  color: "blue"
+inputs:
+  semantic-model-path:
+    description: "Fully qualified semantic model stage path."
+    required: false
+  message:
+    description: "Single natural language prompt (used when messages input is not provided)."
+    required: false
+    default: "What were total sales by nation in 1995?"
+  messages:
+    description: "JSON array of Cortex Analyst message objects."
+    required: false
+  semantic-view-path:
+    description: "Optional Cortex semantic view path."
+    required: false
+  include-sql:
+    description: "Set to true to include SQL in the response."
+    required: false
+    default: "false"
+  result-format:
+    description: "Optional result format hint (markdown, json, etc.)."
+    required: false
+  temperature:
+    description: "Optional generation temperature."
+    required: false
+  max-output-tokens:
+    description: "Optional max output tokens."
+    required: false
+outputs:
+  result-json:
+    description: "Stringified JSON response from Cortex Analyst."
+runs:
+  using: "node20"
+  main: "dist/snowflake-cortex-analyst.js"

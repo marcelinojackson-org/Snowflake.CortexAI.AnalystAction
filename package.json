@@ -1,0 +1,33 @@
+{
+  "name": "snowflake-cortexai-analyst-action",
+  "version": "0.1.0",
+  "description": "GitHub Action that calls Snowflake Cortex Analyst via the shared common library",
+  "main": "dist/snowflake-cortex-analyst.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && npm run bundle",
+    "bundle": "ncc build lib/snowflake-cortex-analyst.js -o dist && mv dist/index.js dist/snowflake-cortex-analyst.js && if [ -f dist/index.js.map ]; then mv dist/index.js.map dist/snowflake-cortex-analyst.js.map; fi",
+    "prepare": "npm run build",
+    "test": "echo \"No tests yet - add integration tests\" && exit 0"
+  },
+  "files": [
+    "dist",
+    "action.yml",
+    "README.md"
+  ],
+  "keywords": [
+    "snowflake",
+    "cortex",
+    "analyst",
+    "github-actions"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.11.1",
+    "@marcelinojackson-org/snowflake-common": "file:../Snowflake.Common"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.38.1",
+    "typescript": "^5.4.5"
+  }
+}
